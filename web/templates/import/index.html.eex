@@ -1,0 +1,44 @@
+<h4>Jira Issues</h4>
+<div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <p>
+      Project:
+      <select id="projects">
+        <%= for board <- @boards do %>
+          <option <%= selected(board, @board_id) %> data-id="<%= board.jira_id %>"><%= board.name %></option>
+        <% end %>
+      </select>
+      Sprint: <select id="sprints">
+        <%= for sprint <- @sprints do %>
+          <option <%= selected(sprint, @sprint_id) %> data-id="<%= sprint.jira_id %>"><%= sprint.name %></option>
+        <% end %>
+      </select>
+      <% IO.inspect(@sprint_id) %>
+      <button type="button" id="issue-load" class="btn btn-default btn-xs">Load</button>
+      </p>
+    </div>
+  </div>
+  <div class="panel-body">
+    <table class="table">
+    <tr>
+      <th>Status</th>
+      <th>Issue</th>
+      <th>Assignee</th>
+      <th>Summary</th>
+    </tr>
+    <%= for issue <- @issues do %>
+      <tr>
+        <td><%= issue.status %></td>
+        <td><%= issue.key %></td>
+        <td><%= raw(avatar(issue)) %></td>
+        <td><%= issue.summary %></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+
+  <!-- Table -->
+  <table class="table">
+  </table>
+</div>
