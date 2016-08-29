@@ -14,7 +14,6 @@
           <option <%= selected(sprint, @sprint_id) %> data-id="<%= sprint.jira_id %>"><%= sprint.name %></option>
         <% end %>
       </select>
-      <% IO.inspect(@sprint_id) %>
       <button type="button" id="issue-load" class="btn btn-default btn-xs">Load</button>
       </p>
     </div>
