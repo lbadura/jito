@@ -25,6 +25,10 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
+channel.on("upload_issue", payload => {
+  console.log(payload["issue_id"])
+})
+
 channel.on("sprints_for_project", payload => {
   $("#sprints").html("")
   for (const sprint of payload["sprints"]) {
@@ -35,6 +39,12 @@ channel.on("sprints_for_project", payload => {
 $(document).ready(function() {
   $('#projects').on('change', function(ev) {
     channel.push("sprints_for_project", $('#projects option:selected').data("id"))
+  })
+
+  $('.issue-btn').on('click', function(ev) {
+    var issue_id = $(ev.target).data('id')
+    console.log("clicked: " + issue_id)
+    channel.push("upload_issue", issue_id)
   })
 
   $("#issue-load").on("click", function(ev) {
