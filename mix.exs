@@ -19,7 +19,7 @@ defmodule Jito.Mixfile do
   def application do
     [mod: {Jito, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :mariaex, :jira]]
+                    :phoenix_ecto, :mariaex, :jira, :todoist]]
   end
 
   # Specifies which paths to compile per environment.
@@ -37,7 +37,10 @@ defmodule Jito.Mixfile do
      {:phoenix_html, "~> 2.6"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
-      {:jira, "~> 0.0.8"},
+     {:jira, "~> 0.0.8"},
+     {:httpotion, "~> 3.0.0", override: true},
+     {:todoist, "~> 0.0.2"},
+     {:credo, "~> 0.4", only: [:dev, :test]},
      {:cowboy, "~> 1.0"}]
   end
 

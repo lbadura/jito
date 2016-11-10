@@ -1,4 +1,4 @@
-defmodule Jito.Sprint do
+defmodule Jito.Jira.Sprint do
   defstruct [:jira_id, :name, :state]
 
   import Jira.Sprint

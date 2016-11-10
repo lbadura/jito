@@ -25,8 +25,8 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
 
-channel.on("upload_issue", payload => {
-  console.log(payload["issue_id"])
+channel.on("uploaded_issue", payload => {
+  console.log('Uploaded: ' + payload["summary"])
 })
 
 channel.on("sprints_for_project", payload => {
@@ -42,16 +42,16 @@ $(document).ready(function() {
   })
 
   $('.issue-btn').on('click', function(ev) {
-    var issue_id = $(ev.target).data('id')
-    console.log("clicked: " + issue_id)
-    channel.push("upload_issue", issue_id)
+    var target = $(ev.target)
+    var issue_id = target.data('id')
+    var key = target.data('key')
+    var summary = target.data('summary')
+    channel.push("upload_issue", {issue_id: issue_id, key: key, summary: summary})
   })
 
   $("#issue-load").on("click", function(ev) {
     var board_id = $("#projects option:selected").data("id")
     var sprint_id = $("#sprints option:selected").data("id")
-    console.log("Sprint: " + sprint_id)
-    console.log("Board: " + board_id)
     window.location.search = "?board_id=" + board_id + "&sprint_id=" + sprint_id
   })
 })

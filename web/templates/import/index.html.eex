@@ -34,7 +34,7 @@
         <td><%= raw(avatar(issue)) %></td>
         <td><%= issue.summary %></td>
         <td>
-          <button type="button" data-id="<%= issue.jira_id%>" class="btn btn-default btn-sm issue-btn">
+          <button type="button" data-key="<%= issue.key%>" data-summary="<%= issue.summary %>" data-id="<%= issue.jira_id%>" class="btn btn-default btn-sm issue-btn">
             Upload
           </button>
         </td>

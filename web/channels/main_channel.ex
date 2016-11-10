@@ -10,8 +10,10 @@ defmodule Jito.MainChannel do
     {:noreply, socket}
   end
 
-  def handle_in("upload_issue", issue_id, socket) do
-    broadcast!(socket, "upload_issue", %{issue_id: issue_id})
+  def handle_in("upload_issue", payload, socket) do
+    issue = Jito.Jira.Issue.from_payload(payload)
+    Jito.Todoist.TaskCreator.call(issue)
+    broadcast!(socket, "uploaded_issue", payload)
     {:noreply, socket}
   end
 end

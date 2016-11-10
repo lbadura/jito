@@ -1,4 +1,4 @@
-defmodule Jito.Board do
+defmodule Jito.Jira.Board do
   defstruct [:jira_id, :name]
 
   import Jira.Board
@@ -10,12 +10,12 @@ defmodule Jito.Board do
   end
 
   def ga_boards do
-    Jito.Board.all
+    Jito.Jira.Board.all
     |> Enum.filter(&ga_board?/1)
   end
 
   def by_name(name) do
-    Jito.Board.all |> Enum.filter(fn(x) -> x.name == name end)
+    Jito.Jira.Board.all |> Enum.filter(fn(x) -> x.name == name end)
   end
 
   def build_struct(json_board) do
