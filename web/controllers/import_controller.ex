@@ -8,7 +8,7 @@ defmodule Jito.ImportController do
     {board_id, _} = Integer.parse(board_id)
     {sprint_id, _} = Integer.parse(sprint_id)
 
-    sprints = Sprint.all(board_id)
+    sprints = Jito.Jira.Sprint.all(board_id)
     issues = Issue.for_sprint(board_id, sprint_id)
     render conn, "index.html", boards: Board.ga_boards, sprints: sprints, issues: issues, board_id: board_id, sprint_id: sprint_id
   end
