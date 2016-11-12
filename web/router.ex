@@ -16,8 +16,7 @@ defmodule Jito.Router do
   scope "/", Jito do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
-    get "/import", ImportController, :index
+    get "/", ImportController, :index
   end
 
   # Other scopes may use custom stacks.
