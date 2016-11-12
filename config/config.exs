@@ -9,6 +9,9 @@ use Mix.Config
 config :jito,
   ecto_repos: [Jito.Repo]
 
+config :jito, Jito.Jira.Board,
+  boards: ["Growth Automation", "Growth Automation Requests"]
+
 # Configures the endpoint
 config :jito, Jito.Endpoint,
   url: [host: "localhost"],

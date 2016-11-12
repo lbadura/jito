@@ -6,12 +6,8 @@ defmodule Jito.Jira.Board do
   def all do
     Jira.Board.all
     |> Enum.map(&build_struct/1)
-    |> Enum.sort_by(fn(x) -> x.name end)
-  end
-
-  def ga_boards do
-    Jito.Jira.Board.all
-    |> Enum.filter(&ga_board?/1)
+    |> Enum.filter(&applicable?/1)
+    |> Enum.sort(&(&1.name <= &2.name))
   end
 
   def by_name(name) do
@@ -22,8 +18,8 @@ defmodule Jito.Jira.Board do
     %__MODULE__{jira_id: json_board["id"], name: json_board["name"]}
   end
 
-  defp ga_board?(board) do
-    ["Growth Automation", "Growth Automation Requests", "IR"]
+  defp applicable?(board) do
+    Application.get_env(:jito, __MODULE__)[:boards]
     |> Enum.member?(board.name)
   end
 end
