@@ -8,7 +8,8 @@ defmodule Jito.MainChannel do
     {:ok, socket}
   end
 
-  def handle_in("sprints_for_project", board_id, socket) do
+  def handle_in("sprints_for_project", payload, socket) do
+    board_id = payload["project_id"]
     broadcast!(socket, "sprints_for_project", %{sprints: Sprint.all(board_id)})
     {:noreply, socket}
   end

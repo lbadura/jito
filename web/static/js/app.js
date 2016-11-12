@@ -38,7 +38,8 @@ channel.on("sprints_for_project", payload => {
 
 $(document).ready(function() {
   $('#projects').on('change', function(ev) {
-    channel.push("sprints_for_project", $('#projects option:selected').data("id"))
+    var project_id =  $('#projects option:selected').data("id");
+    channel.push("sprints_for_project", {project_id: project_id})
   })
 
   $('.issue-btn').on('click', function(ev) {
