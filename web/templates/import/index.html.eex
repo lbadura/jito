@@ -5,6 +5,7 @@
       <p>
       Project:
       <select id="projects">
+        <option></option>
         <%= for board <- @boards do %>
           <option <%= selected(board, @board_id) %> data-id="<%= board.jira_id %>"><%= board.name %></option>
         <% end %>
