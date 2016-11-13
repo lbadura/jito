@@ -12,4 +12,11 @@ defmodule Jito.ImportView do
   def avatar(issue) do
     "<img src=\"#{issue.avatar_url}\" alt=\"#{issue.assignee_name}\"/>"
   end
+
+  def issue_css_class(issue) do
+    issue.status
+    |> String.downcase
+    |> String.replace(" ", "-")
+    |> String.replace("!", "")
+  end
 end

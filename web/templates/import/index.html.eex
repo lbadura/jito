@@ -1,11 +1,10 @@
-<h4>Jira Issues</h4>
 <div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="columns">
+      <div class="column is-one-quarter">
       <label class="label">Project:</label>
       <p class="control">
       <span class="select">
-        <select id="projecrs">
+        <select id="projects">
           <option></option>
           <%= for board <- @boards do %>
             <option <%= selected(board, @board_id) %> data-id="<%= board.jira_id %>"><%= board.name %></option>
@@ -13,37 +12,46 @@
         </select>
       </span>
       </p>
-      Sprint: <select id="sprints">
-        <%= for sprint <- @sprints do %>
-          <option <%= selected(sprint, @sprint_id) %> data-id="<%= sprint.jira_id %>"><%= sprint.name %></option>
-        <% end %>
-      </select>
-      <button type="button" id="issue-load" class="btn btn-default btn-xs">Load</button>
+      </div>
+      <div class="column is-one-quarter">
+      <p class="control">
+        <label class="label">Sprint:</label>
+        <span class="select">
+          <select id="sprints">
+            <%= for sprint <- @sprints do %>
+              <option <%= selected(sprint, @sprint_id) %> data-id="<%= sprint.jira_id %>"><%= sprint.name %></option>
+            <% end %>
+          </select>
+        </span>
+        <a href="#" id="issue-load" class="button is-primary">Load</a>
       </p>
+      </div>
     </div>
-  </div>
-  <div class="panel-body">
-    <table class="table table-hover">
-    <tr>
-      <th>Status</th>
-      <th>Issue</th>
-      <th>Assignee</th>
-      <th>Summary</th>
-      <th></th>
-    </tr>
-    <%= for issue <- @issues do %>
-      <tr class="issue">
-        <td><%= issue.status %></td>
-        <td><%= issue.key %></td>
-        <td><%= raw(avatar(issue)) %></td>
-        <td><%= issue.summary %></td>
-        <td>
-          <button type="button" data-key="<%= issue.key%>" data-summary="<%= issue.summary %>" data-id="<%= issue.jira_id%>" class="btn btn-default btn-sm issue-btn">
-            Upload
-          </button>
-        </td>
+  <div>
+    <table class="table">
+      <tr>
+        <th>Status</th>
+        <th>Issue key</th>
+        <th>Assignee</th>
+        <th>Summary</th>
+        <th></th>
       </tr>
-    <% end %>
+      <%= for issue <- @issues do %>
+        <tr class="issue">
+          <td><span class="tag <%= issue_css_class(issue) %> is-small"><%= issue.status %></span></td>
+          <td><span class="tag is-small"><%= issue.key %></span></td>
+          <td><%= raw(avatar(issue)) %></td>
+          <td><%= issue.summary %></td>
+          <td>
+            <a class="button is-icon is-primary is-small issue-btn" data-key="<%= issue.key%>" data-summary="<%= issue.summary %>" data-id="<%= issue.jira_id%>">
+              <span class="icon is-small">
+                <i class="fa fa-check-square-o"></i>
+              </span>
+              <span>Add to Todoist</span>
+            </a>
+          </td>
+        </tr>
+      <% end %>
     </table>
   </div>
 

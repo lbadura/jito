@@ -54,6 +54,9 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
+    },
+    css: {
+      modules: true
     }
   },
 
@@ -64,6 +67,11 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+    enabled: true,
+    whitelist: ["phoenix", "phoenix_html", "jquery"],
+    globals: {
+      $: 'jquery',
+      jQuery: 'jquery'
+    },
   }
 };

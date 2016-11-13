@@ -43,7 +43,7 @@ $(document).ready(function() {
   })
 
   $('.issue-btn').on('click', function(ev) {
-    var target = $(ev.target)
+    var target = $(ev.currentTarget)
     var issue_id = target.data('id')
     var key = target.data('key')
     var summary = target.data('summary')

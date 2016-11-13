@@ -8,3 +8,17 @@ html {
   display: none;
 }
 
+.tag.done, .tag.oh-yeah, .tag.ready-to-ship {
+  background-color: #23d160;
+  color: #ffffff;
+}
+
+.tag.to-do, .tag.todo {
+  background-color: #3273dc;
+  color: #ffffff;
+}
+
+.tag.in-progress, .tag.almost-perfect {
+  background-color: #ffdd57;
+  color: #000000;
+}
