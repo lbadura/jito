@@ -7,30 +7,51 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Hello Jito!</title>
+    <title>Jito</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
   </head>
 
   <body>
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="https://github.com/lbadura/jito">Source</a></li>
-          </ul>
-        </nav>
-        <span></span>
-      </header>
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="content">
+            <h1 class="title is-4">JITO</h1>
+            <h4 class="subtitle is-6">Jira to Todoist</h4>
+          </div>
+        </div>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <div class="nav-center">
+          <a class="nav-item" href="https://github.com/lbadura/jito">
+            <span class="icon">
+              <i class="fa fa-github"></i>
+            </span>
+          </a>
+          <a class="nav-item" href="https://twitter.com/lbadura">
+            <span class="icon">
+              <i class="fa fa-twitter"></i>
+            </span>
+          </a>
+        </div>
+
+        <div class="nav-right nav-menu">
+          <a class="nav-item" href="<%= import_path @conn, :index %>">
+            Home
+          </a>
+        </div>
+      </nav>
+      <article class="message is-primary" role="alert">
+        <div class="message-body alert alert-info"><%= get_flash(@conn, :info) %></div>
+      </article>
+      <article class="message is-danger" role="alert">
+        <div class="message-body alert alert-danger"><%= get_flash(@conn, :error) %></div>
+      </article>
 
       <main role="main">
-        <%= render @view_module, @view_template, assigns %>
+      <%= render @view_module, @view_template, assigns %>
       </main>
-
     </div> <!-- /container -->
-    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

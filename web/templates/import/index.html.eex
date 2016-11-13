@@ -2,14 +2,17 @@
 <div>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <p>
-      Project:
-      <select id="projects">
-        <option></option>
-        <%= for board <- @boards do %>
-          <option <%= selected(board, @board_id) %> data-id="<%= board.jira_id %>"><%= board.name %></option>
-        <% end %>
-      </select>
+      <label class="label">Project:</label>
+      <p class="control">
+      <span class="select">
+        <select id="projecrs">
+          <option></option>
+          <%= for board <- @boards do %>
+            <option <%= selected(board, @board_id) %> data-id="<%= board.jira_id %>"><%= board.name %></option>
+          <% end %>
+        </select>
+      </span>
+      </p>
       Sprint: <select id="sprints">
         <%= for sprint <- @sprints do %>
           <option <%= selected(sprint, @sprint_id) %> data-id="<%= sprint.jira_id %>"><%= sprint.name %></option>

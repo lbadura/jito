@@ -1,1 +1,10 @@
 /* This file is for your main application css. */
+
+html {
+  background-color: #fff;
+}
+
+.message {
+  display: none;
+}
+
